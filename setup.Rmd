@@ -26,11 +26,14 @@ dev.off <- function(){
   invisible(grDevices::dev.off())
 }
 # countdown
+##note Amy installed "githubinstall" package to install countdown 
+#githubinstall("countdown")
 library(countdown)
 # conflicted
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 # xaringanExtra
+#devtools::install_github("gadenbuie/xaringanExtra")
 library(xaringanExtra)
 xaringanExtra::use_panelset()
 # output number of lines
