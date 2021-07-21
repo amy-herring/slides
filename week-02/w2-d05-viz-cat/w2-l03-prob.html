@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Welcome to IDS!</title>
+    <title>Probability</title>
     <meta charset="utf-8" />
     <meta name="author" content="introds.org" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -16,10 +16,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Welcome to IDS!
+# Probability
 ## <br><br> Introduction to Data Science
 ### <a href="https://introds.org/">introds.org</a>
-### <br> Dr. Mine Çetinkaya-Rundel
+### <br> Prof. Amy Herring
 
 ---
 
@@ -41,262 +41,105 @@ layout: true
 
 class: middle
 
-# Hello world!
+# Goal
 
 ---
 
-class: middle
+## Goal of statistics
 
-## Dr. Mine Çetinkaya-Rundel
+One goal of **statistics** is to make **inferences** about a **population** based on data in one or more **samples**.
+- Population: the entire group we would like to make conclusions about (e.g., all people aged 15 and up in China, all pregnancies worldwide)
+- Sample: specific group we have collected data from (e.g., a random sample of non-institutionalized people aged 15 and up in sampled households, from sampled villages from sampled counties; pregnancies receiving prenatal care at Duke)
+- The validity of our inferences depends on a variety of factors, including the **representativeness** of our sample
 
----
+**Statistical inference** is built upon the foundation of **probability theory**.
 
-## Data science
 
-.pull-left-wide[
-- Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. 
 
-- We're going to learn to do this in a `tidy` way -- more on that later!
 
-- This is a course on introduction to data science, with an emphasis on statistical thinking.
-]
 
 ---
 
-## Course FAQ
+### Data
 
-.pull-left-wide[
-**Q - What data science background does this course assume?**  
-A - None.
-
-**Q - Is this an intro stat course?**  
-A - While statistics `\(\ne\)` data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics. However this course is *not* your typical high school statistics course.
-
-**Q - Will we be doing computing?**   
-A - Yes.
-]
+We consider data from the Global Adult Tobacco Survey (GATS). Because of strongly gendered cultural norms around smoking in China, we will focus on smoking behavior as well as interviewer-identified binary gender.
 
 ---
 
-## Course FAQ
 
-.pull-left-wide[
-**Q - Is this an intro CS course?**  
-A - No, but many themes are shared.
 
-**Q - What computing language will we learn?**  
-A - R.
+### Data
 
-**Q: Why not language X?**  
-A: We can discuss that over ☕.
-]
-
----
-
-## One link to rule them all...
-
-... where you can find everything except your course marks!
+## Selected variables
 
 &lt;br&gt;
 
-.larger[
-.center[
-[**introds.org**](https://introds.org/)
-]
+.midi[
+variable        | description
+----------------|-------------
+`CURRENTSMOKE`      |	yes, no, or don't know
+`AGE` |	computed from date of birth
+`EDUCATION`	          | highest level of education completed
+`GENDER`	          | interviewer instructions were "Record gender from observation. Ask if necessary"; options for male, female, missing/NA
+`PROVINCE`       |	residence of the individual
 ]
 
+Other data are also available in the file. Sample survey weights are not included but should be used to obtain nationally-representative estimates (our estimates are fairly close for the quantities we consider today).
 ---
 
 class: middle
 
-# Software
+# Operations on Events
 
 ---
 
-&lt;img src="img/excel.png" width="75%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+
+## Events
+
+An **event** is the basic element to which probability is applied, e.g. the result of an observation or experiment.
+
+- **A** is the event that a person is a cigarette smoker
+- **B** is the event that a person identifies as female
+- **C** is the event that a person has blood type A+
+
+A **sample space** is the set of all possible outcomes.
+
+
+
+## Operations on Events
+
+- The **union** of A and B, denoted `\(A \cup B\)`, is the event that A, or B, or both A and B, occur. Here, `\(A \cup B\)` is the event that a person identifies as female, or is a smoker, or both.
+
+- The **intersection** of A and B, denoted `\(A \cap B\)`, is the event that both A and B occur. Here `\(A \cap B\)` is the event that a person both identifies as female and is a smoker. A and B are **disjoint** or **mutually exclusive** if `\(A \cap B = \emptyset\)` (A and B can't occur simultaneously).
+
+- The **complement** of A, denoted `\(A^c\)` or `\(\overline{A}\)`, is the event A does not occur (nonsmoker). `\(A\)` and `\(\overline{A}\)` are **mutually exclusive** 
 
 ---
 
-&lt;img src="img/r.png" width="75%" style="display: block; margin: auto auto auto 0;" /&gt;
+## Venn Diagram
+
+
+&lt;img src="img/covidallergy.jpg" width="75%" style="display: block; margin: auto auto auto 0;" /&gt;
+---
+
+## Venn Diagram
+
+&lt;img src="img/santavenn.jpg" width="60%" style="display: block; margin: auto auto auto 0;" /&gt;
+---
+
+## Probability
+
+The **probability** of an event tells us how likely an event is to occur, and it can take values from 0 to 1, inclusive. It can be viewed as the proportion of times the event would occur if it could be observed an infinite number of times.
+
+If we know the probability of `\(A\)`, often denoted `\(P(A)\)`, it is easy to calculate the probability of `\(\overline{A}\)` as `\(P(\overline{A})=1-P(A)\)`. 
+
+## Additive Rule of Probability
+
+When events are mutually exclusive, `\(P(A\cup B)=P(A)+P(B)\)`.  When two events can occur simultaneously
 
 ---
 
-&lt;img src="img/rstudio.png" width="73%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-class: middle
-
-# Data science life cycle
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.001.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.002.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.003.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.004.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.005.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.006.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-.pull-left[
-&lt;img src="img/google-trend-index.png" width="75%" style="display: block; margin: auto auto auto 0;" /&gt;
-]
-.pull-right[
-&lt;img src="img/data-science-cycle/data-science-cycle.006.png" width="90%" style="display: block; margin: auto 0 auto auto;" /&gt;
-]
-
----
-
-.pull-left[
-&lt;img src="img/google-trend-index.png" width="75%" style="display: block; margin: auto auto auto 0;" /&gt;
-]
-.pull-right[
-&lt;img src="img/data-science-cycle/data-science-cycle.006.png" width="90%" style="display: block; margin: auto 0 auto auto;" /&gt;
-
-```
-## # A tibble: 5 x 2
-##   date             season
-##   &lt;chr&gt;            &lt;chr&gt; 
-## 1 23 January 2017  winter
-## 2 4 March 2017     spring
-## 3 14 June 2017     summer
-## 4 1 September 2017 fall  
-## 5 ...              ...
-```
-]
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.007.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.008.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/data-science-cycle/data-science-cycle.009.png" width="90%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-&lt;img src="img/unvotes/unvotes.gif" width="85%" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-class: middle
-
-# Let's dive in!
-
----
-
-background-image: url("img/unvotes/unvotes-01.jpeg")
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-02.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-03.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-04.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-05.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-06.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-07.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-08.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-09.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-10.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-11.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-12.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-13.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: inverse
-
-&lt;img src="img/unvotes/unvotes-14.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-.center[
-.large[
-[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
-]
-]
-
-&lt;img src="img/unvotes/unvotes-15.png" width="65%" style="display: block; margin: auto;" /&gt;
-
----
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
