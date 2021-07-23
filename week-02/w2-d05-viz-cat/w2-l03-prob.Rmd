@@ -148,6 +148,8 @@ We may be interested in the conditional probability someone is a smoker given th
 More formally, we define **conditional probability** as 
 $P(A|B)=\frac{P(A \cap B)}{P(B)}$ (verify this in your own using the simple example figures).
 
+Manipulating this formula, we get the **multiplicative rule of probability**: $P(A \cap B)=P(B)P(A|B)$.
+
 ---
 
 

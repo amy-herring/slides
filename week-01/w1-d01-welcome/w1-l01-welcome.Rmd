@@ -260,7 +260,7 @@ class: middle
 .small[
 
 ```{r message=FALSE}
-life <- readr::read_csv("/Users/amyherring/Documents/GitHub/198slides-f21/week-01/w1-d01-welcome/lifeexp/lifeexpectancy_infant.csv")
+life <- readr::read_csv("lifeexp/lifeexpectancy_infant.csv")
 
 life
 ```
