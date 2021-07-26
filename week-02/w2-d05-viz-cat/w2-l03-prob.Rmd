@@ -88,6 +88,7 @@ An **event** is the basic element to which probability is applied, e.g. the resu
 
 A **sample space** is the set of all possible outcomes.
 
+---
 
 
 ## Operations on Events
@@ -110,7 +111,7 @@ knitr::include_graphics("img/covidallergy.jpg")
 
 ## Venn Diagram
 
-```{r echo=FALSE, fig.align="left"}
+```{r echo=FALSE, fig.align="left", out.width="50%"}
 knitr::include_graphics("img/santavenn.jpg")
 ```
 ---
@@ -143,13 +144,75 @@ If we feel this set is a sample representative of a population of interest, we c
 
 We may be interested in the conditional probability someone is a smoker given that they identify as female, which we can estimate as $\frac{1}{3+1}$ -- we just change the denominator to correspond to our smaller population of interest.
 
+---
+
 ## Conditional Probability
 
 More formally, we define **conditional probability** as 
-$P(A|B)=\frac{P(A \cap B)}{P(B)}$ (verify this in your own using the simple example figures).
+$P(A|B)=\frac{P(A \cap B)}{P(B)}$ (verify this on your own using the simple example figures).
 
 Manipulating this formula, we get the **multiplicative rule of probability**: $P(A \cap B)=P(B)P(A|B)$.
 
+One more helpful rule is the **law of total probability**:
+
+$P(A)=P(A \mid B)P(B) + P(A \mid \overline{B})P(\overline{B}) = P(A \cap B)+P(A \cap \overline{B})$, which translates to the obvious statement that the probabilities that A occurs is equal to the sum of the probability that A occurs with B and that A occurs without B.
+
 ---
+
+## Example: Breast Cancer Screening
+
+Let $A$ be the event that a woman has breast cancer (e.g., background rate in population for a certain age group).  Say $P(A)=0.01$ for a 40-year-old woman.
+
+Let $B$ be the event that a screening mammogram is positive.
+
+Once a person has a positive mammogram, our estimate iof the probability she has breast cancer, $P(A|B)$, has increased.  How much should it increase?  Are we certain she has cancer, or is there some chance the test is wrong?
+
+---
+
+## Sensitivity and Specificity
+
+A *diagnostic test* like a mammogram is often characterized by its quality -- we want a test to have good sensitivity (picking up cancer when a person really has it) and specificity (ruling out cancer when a person is cancer-free).
+
+Sensitivity is $P(B|A)$, and specificity is $P(\overline{B} \mid \overline{A})$. A screening mammogram may have sensitivity of 85% and specificity of 90%. 
+
+---
+
+## Bayes's Theorem
+
+**Bayes's theorem** gives us a formal way to update our beliefs based on new information.  It says $P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}=\frac{P(A \cap B)}{P(B)}$. 
+
+In this example, a 40 year old woman with a positive screening mammogram may wish to know her chances of having cancer. Several papers have shown that even doctors tend to strongly overestimate her chances of having cancer.
+
+---
+
+## Bayes's Theorem
+
+- Baseline probability of cancer $P(A)=0.01$ (1 percent of women her age)
+- She wants to know $P(A \mid B)$ or her chances of having cancer given that her mammogram is positive (also called **positive predictive value**).
+- Bayes's Theorem: $P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}$.  From the sensitivity above, we know $P(B \mid A)=0.85$. 
+- How do we get $P(B)$?  We can get this using the law of total probability:  $P(B)=P(B \mid A)P(A) + P(B \mid \overline{A})P(\overline{A})$. 
+  - We can get $P(B \mid \overline{A})$ using the specificity $P(\overline{B} \mid \overline{A})$ and the fact that $P(\overline{B} \mid \overline{A}+P(B \mid \overline{A})=1$ as $P(B \mid \overline{A})=1-0.9=0.1$ 
+  - Then P(B)=0.85*0.01+0.1*0.99=0.1075
+
+So finally $P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}=\frac{0.85*0.01}{0.1075}=0.079$.
+
+## Bayes's Theorem and Baseline Prevalence
+
+Here, we can think of the 1% probability of breast cancer among 40 year old women as our **prior probability** a woman has cancer, and 7.9% as the **posterior probability** she has cancer after we see the data that her screening mammogram is positive.
+
+Cancer would be confirmed or ruled out by subsequent testing, such as a diagnostic mammogram, ultrasound, or biopsy. 
+
+## You Try It!
+
+Most people who have a negative test result (e.g., mammogram looks good or COVID test negative) don't then worry about whether they really do have disease. Suppose our 40 year old woman with a baseline 1% breast cancer risk instead had a negative (all clear) mammogram. What is the updated probability she has breast cancer given this test result?
+
+
+
+
+
+
+
+
+
 
 
